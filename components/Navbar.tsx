@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex justify-between items-center lg:px-40 px-2 py-4 container mx-auto">
+      <div className="flex justify-between items-center lg:px-8 px-2 py-4 max-w-screen-xl mx-auto">
         <div className="flex items-center gap-1">
           <Image
             src={"/images/logo.png"}
@@ -22,6 +22,7 @@ export default function Navbar() {
             height={1000}
             alt="logo"
             className="w-16"
+            priority
           />
           <h1 className="text-xl font-bold">Wears</h1>
         </div>
@@ -30,7 +31,13 @@ export default function Navbar() {
           {navLinks.map((navs, index) => (
             <Link key={index} href={navs.href} className="flex items-center">
               {navs.label}
-              {navs.icon && <navs.icon size={25} />}
+              {navs.icon ? (
+                <navs.icon
+                  size={25}
+                  className="cursor-pointer"
+                  aria-label="shop-dropdown"
+                />
+              ) : null}
             </Link>
           ))}
         </div>
@@ -38,7 +45,11 @@ export default function Navbar() {
         <div className="flex items-center space-x-5">
           {navIcons.map((icons, index) => (
             <div key={index}>
-              <icons.icon size={25} className="cursor-pointer" />
+              <icons.icon
+                size={25}
+                className="cursor-pointer"
+                aria-label="icons"
+              />
             </div>
           ))}
         </div>
